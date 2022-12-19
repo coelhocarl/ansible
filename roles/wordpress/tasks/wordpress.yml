@@ -40,7 +40,7 @@
 
 - name: check exist wordpress 
   shell: ls /var/www/wordpress
-  register: wordpress_chek
+  register: wordpress_check
   ignore_errors: true
 
 - name: download and config wordpress
