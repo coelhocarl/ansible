@@ -1,0 +1,39 @@
+windows:
+ hosts:
+  srv7:
+   ansible_host: ws-srv7.corp.intranet
+  srv8:
+   ansible_host: ws-srv8.corp.intranet
+ vars:
+  ansible_connection: winrm
+  ansible_winrm_transport: kerberos
+
+debian:
+ hosts:
+  srv5:
+   ansible_host: 10.10.10.105
+  srv6:
+   ansible_host: 10.10.10.106
+
+centos8:
+ hosts:
+  srv3:
+   ansible_host: 10.10.10.103
+  srv4:
+   ansible_host: 10.10.10.104
+
+centos9:
+ hosts:
+  srv1:
+   ansible_host: 10.10.10.101
+  srv2:
+   ansible_host: 10.10.10.102
+
+linux:
+ children:
+  centos8:
+  centos9:
+  debian:
+ vars:
+  ansible_become: yes
+  ansible_become_method: sudo  

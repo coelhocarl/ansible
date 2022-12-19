@@ -1,0 +1,61 @@
+---
+# tasks file for wordpress
+- name: Install httpd and php
+  dnf: 
+   name={{ wordpress_packages }}
+
+- name: disable firewall
+  service:
+   name: firewalld
+   enabled: false
+   state: stopped
+
+- name: start httpd
+  service:
+   name: httpd
+   enabled: yes
+   state: started
+
+- name: get salt keys for wp-config.php
+  delegate_to: localhost
+  uri:
+    url: https://api.wordpress.org/secret-key/1.1/salt/      
+    return_content: yes
+  become: False
+  register: 'wp_salt_keys'
+
+- name: set wp_salt fact
+  set_fact:
+    wp_salt: '{{ wp_salt_keys.content }}'
+
+- name: copy wordpress.conf
+  copy: 
+   src: wordpress.conf
+   dest: /tmp/wordpress.conf
+
+- name: copy wp-config.php
+  template:
+   src: wp-config.php
+   dest: /tmp/wp-config.php
+
+- name: check exist wordpress 
+  shell: ls /var/www/wordpress
+  register: wordpress_chek
+  ignore_errors: true
+
+- name: download and config wordpress
+  shell: |
+   cd /var/www
+   wget https://wordpress.org/latest.tar.gz
+   tar xvzf latest.tar.gz
+   rm -f latest.tar.gz
+   cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
+   cp -f /tmp/wp-config.php /var/www/wordpress/wp-config.php
+   cp -f /tmp/wordpress.conf /etc/httpd/conf.d/wordpress.conf
+   chown -Rf apache:apache /var/www/wordpress/
+   chmod -Rf 775 /var/www/wordpress/
+   systemctl restart httpd
+   exit 0
+   when: wordpress_check is failed
+
+...

@@ -1,0 +1,52 @@
+---
+# tasks file for mariadb
+- name: update system
+  dnf: name="*" state=latest update_cache=yes
+
+- name: install mariadb
+  dnf: name={{ item }}
+  loop:
+   - mariadb-server
+   - pip
+
+- name: start service
+  service:
+   name: mariadb
+   enabled: yes
+   state: started
+
+- name: install pymysql
+  pip: name=pymysql
+
+- name: mysql_secure_installation
+  mysql_secure_installation:
+    login_password: ''
+    new_password: "{{ db_root_password }}"
+    user: root
+    login_host: localhost
+    hosts: ['localhost', '127.0.0.1', '::1']
+    change_root_password: true
+    remove_anonymous_user: true
+    disallow_root_login_remotely: true
+    remove_test_db: true
+  register: mysql_secure
+
+- debug:
+    var: mysql_secure
+
+- name: Create mysql database
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
+    login_user: root
+    login_password: "{{ db_root_password }}"
+
+- name: Create mysql user
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_user_password }}"
+    priv: '*.*:ALL'
+    login_user: root
+    login_password: "{{ db_root_password }}"
+
+...

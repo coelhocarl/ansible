@@ -1,0 +1,18 @@
+---
+# vars file for wordpress
+db_name: wp_db1
+db_user: wp_db_usr
+db_user_password: mudar@123456
+db_root_password: 123456@mudar
+
+wordpress_packages:
+ - httpd
+ - httpd-tools
+ - php
+ - php-mysqlnd
+ - php-pdo
+ - php-gd
+ - php-mbstring
+ - php-json
+ - php-pecl-zip
+ - php-xml

@@ -1,0 +1,22 @@
+---
+# tasks file for common
+- name: Update RedHat
+  dnf: 
+   pkg: "*"
+   state: latest
+   update_cache: true
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Update Debian
+  ansible.builtin.apt:
+   pkg: "*"
+   state: latest
+   update_cache: true
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Update Widows
+  win_updates:
+   category_names: "*"
+  when: ansible_os_family == "Windows"
+
+...

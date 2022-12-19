@@ -1,0 +1,4 @@
+- name: Default Playbook
+  hosts: srv1
+  roles: 
+   - wordpress

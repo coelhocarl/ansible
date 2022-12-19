@@ -1,0 +1,4 @@
+---
+# tasks file for wordpress
+- import_tasks: mariadb.yml
+- import_tasks: wordpress.yml
