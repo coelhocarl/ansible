@@ -40,8 +40,6 @@ define( 'DB_COLLATE', '' );
  */
 {{wp_salt}}
 
-*/
-
 /**#@-*/
 
 /**
