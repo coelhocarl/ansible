@@ -1,8 +1,7 @@
-Role Name
-=========
-Instala e configura o Wordpress local
+Instala e configura o Wordpress local no CentOS 9
 
 
 Requirements
 ------------
-Alvo com CentOS 9
+Acesso a internet
+Permissão de root no alvo
