@@ -1,0 +1,19 @@
+---
+# handlers file for zb-agent2
+- name: linux_copy_conf
+  template:
+    src: zabbix_agent2.conf
+    dest: /etc/zabbix/zabbix_agent2.conf
+
+- name: linux_enable_agent
+  service: 
+    name: zabbix-agent2.service
+    enabled: true
+    state: restarted
+
+- name: windows_set_service
+  win_shell: |
+    C:\Zabbix\zabbix_agent2.exe -c c:\Zabbix\zabbix_agent2.conf -i
+    Start-Service "Zabbix Agent 2"
+
+...

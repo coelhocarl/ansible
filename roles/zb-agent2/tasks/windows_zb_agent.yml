@@ -1,0 +1,14 @@
+---
+- name: windows - copy packages
+  win_copy:
+    src: files/Zabbix
+    dest: C:\
+
+- name: windows - copy zabbix_agent2.conf
+  win_template:
+    src: zabbix_agent2_win.conf
+    dest: C:\Zabbix\zabbix_agent2.conf
+
+  notify: windows_set_service
+
+...

@@ -1,0 +1,15 @@
+---
+# tasks file for zb-agent2
+- import_tasks: centos_zb_agent.yml
+  when: ansible_os_family == "RedHat"
+
+- import_tasks: debian_zb_agent.yml
+  when: ansible_os_family == "Debian"
+
+- import_tasks: suse_zb_agent.yml
+  when: ansible_os_family == "Suse"
+
+- import_tasks: windows_zb_agent.yml
+  when: ansible_os_family == "Windows"
+
+...

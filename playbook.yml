@@ -1,0 +1,6 @@
+- name: Default Playbook
+  hosts: all
+  roles: 
+#   - common
+#   - wordpress
+#   - zb-agent2

@@ -1,0 +1,22 @@
+---
+- name: suse - set repo zabbix
+  zypper:
+    pkg: "{{ zb_repo_suse }}"
+    state: present
+    disable_gpg_check: true
+
+- name: suse - update cache
+  zypper:
+    pkg: "*" 
+    disable_gpg_check: true
+    update_cache: true
+
+- name: suse - install agent2
+  zypper:
+    pkg={{ zb_agent2 }}
+  
+  notify:
+    - linux_copy_conf
+    - linux_enable_agent
+
+...

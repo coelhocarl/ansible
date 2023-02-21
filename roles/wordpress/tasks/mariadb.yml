@@ -1,13 +1,11 @@
 ---
 # tasks file for mariadb
+# variaveis em vars/main.yml
 - name: update system
   dnf: name="*" state=latest update_cache=yes
 
 - name: install mariadb
-  dnf: name={{ item }}
-  loop:
-   - mariadb-server
-   - pip
+  dnf: name={{ mariadb_packages }}
 
 - name: start service
   service:

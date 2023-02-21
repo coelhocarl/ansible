@@ -1,0 +1,29 @@
+---
+all:
+  hosts:
+    ce-wp.corp.intranet:
+    ce-zb1.corp.intranet:
+    de-zb1.corp.intranet:
+    su-zb1.corp.intranet:
+    ws-zb1.corp.intranet:
+
+windows:
+  hosts:
+    ws-zb1.corp.intranet:
+  vars:
+    ansible_connection: winrm
+    ansible_winrm_transport: kerberos
+    ansible_winrm_user: svc_ansible
+#    ansible_winrm_password: <insira>
+
+linux:
+  hosts:
+    ce-wp.corp.intranet:
+    ce-zb1.corp.intranet:
+    de-zb1.corp.intranet:
+    su-zb1.corp.intranet:
+  vars:
+    ansible_become: yes
+    ansible_become_method: sudo
+
+...

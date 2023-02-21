@@ -1,0 +1,6 @@
+2023-02
+
+Zabbix agent 2 v6.2.7
+
+Mantenha-se atualizado https://www.zabbix.com/download_agents
+

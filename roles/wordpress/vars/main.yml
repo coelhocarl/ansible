@@ -2,8 +2,12 @@
 # vars file for wordpress
 db_name: wp_db1
 db_user: wp_db_usr
-db_user_password: mudar@123456
-db_root_password: 123456@mudar
+db_user_password: P@$$w0rD1
+db_root_password: P@$$w0rD3
+
+mariadb_packages:
+ - mariadb-server
+ - pip
 
 wordpress_packages:
  - httpd

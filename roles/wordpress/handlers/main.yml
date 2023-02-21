@@ -1,0 +1,6 @@
+---
+# handlers file for wordpress
+- name: fw_reload
+  shell: firewall-cmd --reload
+
+...

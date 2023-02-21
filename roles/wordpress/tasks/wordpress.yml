@@ -4,11 +4,13 @@
   dnf: 
    name={{ wordpress_packages }}
 
-- name: disable firewall
-  service:
-   name: firewalld
-   enabled: false
-   state: stopped
+- name: rule firewall
+  firewalld:
+   zone: public
+   port: 80/tcp
+   permanent: true
+   state: enabled
+  notify: fw_reload
 
 - name: start httpd
   service:
@@ -47,9 +49,8 @@
   shell: |
    cd /var/www
    wget https://wordpress.org/latest.tar.gz
-   tar xvzf latest.tar.gz
+   tar xzf latest.tar.gz
    rm -f latest.tar.gz
-   cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
    cp -f /tmp/wp-config.php /var/www/wordpress/wp-config.php
    cp -f /tmp/wordpress.conf /etc/httpd/conf.d/wordpress.conf
    chown -Rf apache:apache /var/www/wordpress/
