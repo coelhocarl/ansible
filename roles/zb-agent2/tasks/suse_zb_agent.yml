@@ -5,12 +5,6 @@
     state: present
     disable_gpg_check: true
 
-- name: suse - update cache
-  zypper:
-    pkg: "*" 
-    disable_gpg_check: true
-    update_cache: true
-
 - name: suse - install agent2
   zypper:
     pkg={{ zb_agent2 }}
