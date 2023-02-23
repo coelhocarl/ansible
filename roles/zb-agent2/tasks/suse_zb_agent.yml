@@ -8,7 +8,7 @@
 - name: suse - install agent2
   zypper:
     pkg={{ zb_agent2 }}
-    disable_gpg_check: true
+    disable_gpg_check=true
 
   notify:
     - linux_copy_conf
