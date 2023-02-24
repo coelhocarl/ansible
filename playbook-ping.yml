@@ -1,0 +1,13 @@
+---
+- name: ping playbook
+  hosts: all
+  tasks:
+   - name: ping Windows
+     win_ping:
+     when: ansible_os_family == "Windows"
+
+   - name: ping linux
+     ping:
+     when: ansible_os_family != "Windows"
+
+...
