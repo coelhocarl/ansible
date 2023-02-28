@@ -1,12 +1,4 @@
 ---
-all:
-  hosts:
-    ce-wp.corp.intranet:
-    ce-zb1.corp.intranet:
-    de-zb1.corp.intranet:
-    su-zb1.corp.intranet:
-    ws-zb1.corp.intranet:
-
 windows:
   hosts:
     ws-zb1.corp.intranet:
