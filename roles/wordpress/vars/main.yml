@@ -20,3 +20,5 @@ wordpress_packages:
  - php-json
  - php-pecl-zip
  - php-xml
+ - php-intl 
+ - php-pecl-imagick
