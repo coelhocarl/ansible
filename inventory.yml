@@ -10,10 +10,12 @@ windows:
 
 linux:
   hosts:
-    ce-wp.corp.intranet:
-    ce-zb1.corp.intranet:
-    de-zb1.corp.intranet:
-    su-zb1.corp.intranet:
+    fe1:
+    ce81:
+    ce91:
+    de1:
+    su1:
+    ub1:
   vars:
     ansible_become: yes
     ansible_become_method: sudo
