@@ -1,7 +1,9 @@
 ---
 windows:
   hosts:
-    ws-zb1.corp.intranet:
+    dc1.corp.intranet:
+    srv1.corp.intranet:
+    sccm.corp.intranet:
   vars:
     ansible_connection: winrm
     ansible_winrm_transport: kerberos
@@ -10,12 +12,17 @@ windows:
 
 linux:
   hosts:
-    fe1:
-    ce81:
-    ce91:
-    de1:
-    su1:
-    ub1:
+    fe38:
+    ce8:
+    ce9:
+    de11:
+    su15:
+    ub23:
+    wordpress:
+    jenkins:
+    rundeck:
+    web1:
+    web2:
   vars:
     ansible_become: yes
     ansible_become_method: sudo

@@ -1,0 +1,18 @@
+---
+- name: debian11 - set repo zabbix
+  apt:
+    deb: "{{ zb_repo_debian11 }}"
+
+- name: debian11 - update cache
+  apt:
+    update_cache: yes
+
+- name: debian11 - install agent2
+  apt:
+    pkg={{ zb_agent2 }}
+
+  notify:
+    - linux_copy_conf
+    - linux_enable_agent
+
+...

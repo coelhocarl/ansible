@@ -1,0 +1,18 @@
+---
+- name: ubuntu22 - set repo zabbix
+  apt:
+    deb: "{{ zb_repo_ubuntu22 }}"
+
+- name: ubuntu22 - update cache
+  apt:
+    update_cache: yes
+
+- name: ubuntu22 - install agent2
+  apt:
+    pkg={{ zb_agent2 }}
+
+  notify:
+    - linux_copy_conf
+    - linux_enable_agent
+
+...

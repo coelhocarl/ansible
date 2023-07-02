@@ -1,18 +1,22 @@
 ---
 # tasks file for zb-agent2
-- import_tasks: debian_zb_agent.yml
-  when: ansible_distribution == "Debian"
+- import_tasks: debian11_zb_agent.yml
+  when: ansible_distribution == "Debian" and ansible_distribution_version == "11"
 
-- import_tasks: centos_zb_agent.yml
-  when: ansible_distribution == "CentOS" or ansible_distribution == "Fedora" or ansible_distribution == "RedHat"
+- import_tasks: centos8_zb_agent.yml
+  when: ansible_distribution == "CentOS" and ansible_distribution_version == "8"
 
-- import_tasks: suse_zb_agent.yml
-  when: ansible_distribution == "openSUSE Leap"
+- import_tasks: centos9_zb_agent.yml
+  when: ansible_distribution == "CentOS" and ansible_distribution_version == "9" or ansible_distribution == "Fedora" and ansible_distribution_version == "38"
 
-- import_tasks: ubuntu_zb_agent.yml
-  when: ansible_distribution == "Ubuntu"
+- import_tasks: suse15_zb_agent.yml
+  when: ansible_distribution == "openSUSE Leap" and ansible_distribution_version is match("15.*")
+
+- import_tasks: ubuntu22_zb_agent.yml
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version is match("23.*")
 
 - import_tasks: windows_zb_agent.yml
   when: ansible_os_family == "Windows"
+
 
 ...

@@ -1,0 +1,16 @@
+---
+- name: centos9 - set repo zabbix
+  dnf:
+    pkg: "{{ zb_repo_centos9 }}"
+    state: present
+    disable_gpg_check: true
+
+- name: centos9 - install agent2
+  dnf:
+    pkg={{ zb_agent2 }}
+
+  notify: 
+    - linux_copy_conf
+    - linux_enable_agent
+
+...
